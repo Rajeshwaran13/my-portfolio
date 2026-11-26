@@ -35,3 +35,5 @@ Until then, the photo slots show an empty placeholder.
 ## Deploy
 
 `vercel.json` is included (SPA rewrites). Import the repo in Vercel and deploy.
+# my-portfolio
+Personal portfolio showcasing my skills, projects, experience, and software development journey.
