@@ -1,0 +1,80 @@
+.root {
+  position: fixed;
+  right: 20px;
+  bottom: 18px;
+  z-index: 96;
+}
+.teaser {
+  position: absolute;
+  right: 68px;
+  bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  padding: 8px 12px;
+  border-radius: var(--r-pill);
+  font-size: 0.82rem;
+  color: var(--text);
+  background: var(--bg-2);
+  border: 1px solid var(--surface-border);
+  box-shadow: var(--shadow-2);
+}
+.teaserX {
+  color: var(--text-faint);
+  font-size: 1rem;
+  line-height: 1;
+}
+.launcher {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  color: #fff;
+  background: var(--accent);
+  box-shadow: 0 10px 28px var(--accent-soft);
+  transition: transform var(--dur-fast) var(--ease), opacity var(--dur-fast) var(--ease);
+}
+.launcher:hover {
+  transform: scale(1.08);
+}
+.open {
+  box-shadow: 0 10px 28px var(--accent-soft);
+}
+
+/* Vue <transition name="pop"> equivalents. */
+.popEnter {
+  animation: popIn 0.25s var(--ease) both;
+}
+.popLeave {
+  animation: popOut 0.25s var(--ease) both;
+  pointer-events: none;
+}
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+}
+@keyframes popOut {
+  to {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+}
+
+@media (max-width: 680px) {
+  /* Lift the launcher above the bottom-center dock so they never overlap. */
+  .root {
+    right: 14px;
+    bottom: 78px;
+  }
+  /* Tucks out of the way while actively scrolling, so it doesn't sit on top
+     of whatever section happens to pass underneath on a short screen. */
+  .launcher.scrollHidden {
+    opacity: 0;
+    transform: translateX(16px) scale(0.85);
+    pointer-events: none;
+  }
+}

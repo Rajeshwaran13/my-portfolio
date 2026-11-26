@@ -1,0 +1,39 @@
+.bubbleChart {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+.plot {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  border-left: 1px solid var(--surface-border);
+  border-bottom: 1px solid var(--surface-border);
+  border-radius: 2px;
+}
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid var(--surface);
+  transition: transform var(--dur-fast) var(--ease);
+  cursor: pointer;
+}
+.bubble:hover {
+  transform: translate(-50%, -50%) scale(1.15);
+}
+.axisX {
+  display: flex;
+}
+.axisTick {
+  flex: 1;
+  text-align: center;
+  font-size: 0.72rem;
+  color: var(--text-faint);
+  padding-top: 4px;
+}
+.axisYHint {
+  font-size: 0.76rem;
+  color: var(--text-faint);
+  margin-top: 2px;
+}

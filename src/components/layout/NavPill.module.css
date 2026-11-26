@@ -1,0 +1,87 @@
+/* Open text nav — no container. Sliding green underline marks the active link. */
+.pill {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 2vw, 30px);
+  padding-bottom: 6px;
+}
+/* Sliding active underline with a dot at its start. */
+.indicator {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  opacity: 0;
+  transition: transform 0.45s var(--ease), width 0.45s var(--ease), opacity 0.25s var(--ease);
+}
+.indicator::before {
+  content: '';
+  position: absolute;
+  left: -3px;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  translate: 0 -50%;
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+.indicator.show {
+  opacity: 1;
+}
+.link {
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+  padding: 8px 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-dim);
+  white-space: nowrap;
+  transition: color 0.25s var(--ease);
+}
+/* Hover line grows from the center (hidden on the active link). */
+.link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--accent-soft);
+  transform: scaleX(0);
+  transition: transform 0.3s var(--ease);
+}
+.link:hover {
+  color: var(--text);
+}
+.link:hover::after {
+  transform: scaleX(1);
+}
+.link.active {
+  color: var(--text);
+  font-weight: 600;
+}
+.link.active::after {
+  display: none;
+}
+/* No focus box after mouse clicks; keyboard focus still gets a ring. */
+.link:focus {
+  outline: none;
+}
+.link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+@media (max-width: 1100px) {
+  .link {
+    font-size: 0.84rem;
+  }
+}

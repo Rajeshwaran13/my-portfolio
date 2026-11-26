@@ -1,0 +1,89 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  justify-content: center;
+  padding-top: 14vh;
+  background: rgba(0, 0, 0, 0.4);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  /* Replaces Vue <transition name="fade"> (enter). */
+  animation: fadeIn 0.2s var(--ease);
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.palette {
+  width: min(560px, calc(100vw - 32px));
+  height: max-content;
+  max-height: 64vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.field {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-4);
+  border-bottom: 1px solid var(--glass-border);
+  color: var(--text-faint);
+}
+.field input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 1rem;
+}
+.field kbd {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  padding: 2px 7px;
+  border-radius: 6px;
+  background: var(--chip-bg);
+  border: 1px solid var(--chip-border);
+}
+.list {
+  list-style: none;
+  overflow-y: auto;
+  padding: var(--sp-2);
+}
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: 11px 14px;
+  border-radius: var(--r-md);
+  cursor: pointer;
+}
+.row.active {
+  background: var(--accent-soft);
+}
+.rIc {
+  color: var(--accent);
+  display: grid;
+  place-items: center;
+}
+.rLabel {
+  flex: 1;
+  font-weight: 500;
+  font-size: 0.94rem;
+}
+.rHint {
+  font-size: 0.78rem;
+  color: var(--text-faint);
+}
+.empty {
+  padding: var(--sp-5);
+  text-align: center;
+  color: var(--text-faint);
+}

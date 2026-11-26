@@ -1,0 +1,35 @@
+/* App-shell styles: route fade-in transition (React port of the Vue <transition name="route">). */
+.route-view {
+  animation: route-in 0.3s var(--ease) both;
+}
+
+@keyframes route-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Body scroll lock while the chat panel is open (toggled by ChatBot). */
+body.chat-lock {
+  overflow: hidden;
+}
+
+/* Empty photo slot — shown until profile.portrait / profile.photo is set. */
+.photo-placeholder {
+  display: grid;
+  place-items: center;
+  gap: var(--sp-2);
+  width: 100%;
+  height: 100%;
+  border: 2px dashed var(--accent-soft);
+  border-radius: inherit;
+  background: linear-gradient(160deg, var(--bg-2), var(--bg));
+  color: var(--text-faint);
+  font-size: 0.85rem;
+  text-align: center;
+}

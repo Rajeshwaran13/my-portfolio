@@ -1,0 +1,114 @@
+/* New message entrance (replaces the Vue transition-group "msg"). */
+.msg {
+  display: flex;
+  animation: msgIn 0.3s var(--ease) both;
+}
+@keyframes msgIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+}
+.user {
+  justify-content: flex-end;
+}
+.bot {
+  justify-content: flex-start;
+}
+.bubbleCol {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 84%;
+}
+.bubble {
+  padding: 10px 14px;
+  border-radius: 16px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+.bot .bubble {
+  background: var(--chip-bg);
+  border: 1px solid var(--chip-border);
+  border-bottom-left-radius: 5px;
+}
+.user .bubble {
+  color: #fff;
+  background: var(--accent);
+  border-bottom-right-radius: 5px;
+}
+.bubble :global(a) {
+  color: var(--accent);
+  text-decoration: underline;
+}
+.user .bubble :global(a) {
+  color: #fff;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+.act {
+  padding: 5px 11px;
+  border-radius: var(--r-pill);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  background: transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+.act:hover {
+  background: var(--accent);
+  color: #fff;
+}
+.chartCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 14px;
+  border-radius: var(--r-md);
+  background: var(--chip-bg);
+  border: 1px solid var(--chip-border);
+}
+.chartLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  align-self: flex-start;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+.typing {
+  display: inline-flex;
+  gap: 4px;
+}
+.typing i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--text-faint);
+  animation: blink 1.2s infinite;
+}
+.typing i:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.typing i:nth-child(3) {
+  animation-delay: 0.4s;
+}
+@keyframes blink {
+  0%,
+  60%,
+  100% {
+    opacity: 0.3;
+  }
+  30% {
+    opacity: 1;
+  }
+}

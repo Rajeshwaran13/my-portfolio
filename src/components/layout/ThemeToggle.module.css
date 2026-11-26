@@ -1,0 +1,39 @@
+.toggle {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  color: var(--text-dim);
+  overflow: hidden;
+  transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+.toggle:hover {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+/* Both icons stacked; the inactive one spins out. */
+.ic {
+  grid-area: 1 / 1;
+  display: inline-flex;
+  line-height: 0;
+  transition: transform var(--dur) var(--ease), opacity var(--dur) var(--ease);
+}
+.icMoon {
+  transform: none;
+  opacity: 1;
+}
+.icSun {
+  transform: rotate(-90deg) scale(0.4);
+  opacity: 0;
+}
+.isDark .icMoon {
+  transform: rotate(90deg) scale(0.4);
+  opacity: 0;
+}
+.isDark .icSun {
+  transform: none;
+  opacity: 1;
+  color: var(--accent);
+}

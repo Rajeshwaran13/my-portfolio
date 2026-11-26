@@ -1,0 +1,88 @@
+.bars {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+.barRow {
+  display: grid;
+  grid-template-columns: 220px 1fr 48px;
+  align-items: center;
+  gap: var(--sp-4);
+  padding: 8px 10px;
+  border-radius: var(--r-sm);
+  transition: background var(--dur-fast) var(--ease);
+}
+.barRow:hover {
+  background: var(--chip-bg);
+}
+.barLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--text-dim);
+}
+.barTrack {
+  height: 8px;
+  border-radius: var(--r-pill);
+  background: var(--chip-bg);
+  overflow: hidden;
+}
+.barFill {
+  display: block;
+  height: 100%;
+  width: var(--lvl);
+  border-radius: var(--r-pill);
+  background: var(--accent);
+  transform-origin: left;
+  /* Zero-width until the list scrolls into view (gated on .is-visible from reveal()). */
+  transform: scaleX(0);
+}
+.bars:global(.is-visible) .barFill {
+  animation: grow 1s var(--ease) both;
+}
+@keyframes grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+.barValue {
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--text-faint);
+}
+
+/* Compact — chat-bubble sized: no fixed label column, smaller everything. */
+.bars.compact {
+  gap: var(--sp-2);
+}
+.bars.compact .barRow {
+  grid-template-columns: 1fr;
+  gap: 4px;
+  padding: 4px 2px;
+}
+.bars.compact .barLabel {
+  font-size: 0.78rem;
+}
+.bars.compact .barTrack {
+  height: 6px;
+}
+.bars.compact .barValue {
+  text-align: left;
+  font-size: 0.72rem;
+}
+
+@media (max-width: 640px) {
+  .barRow {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+  .barValue {
+    text-align: left;
+  }
+}

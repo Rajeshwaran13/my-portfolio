@@ -1,0 +1,293 @@
+/* ================= Split: role card + impact list ================= */
+.split {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.85fr) 1.4fr;
+  gap: clamp(28px, 4vw, 64px);
+  margin-top: var(--sp-7);
+  align-items: start;
+}
+.split + .split {
+  margin-top: var(--sp-9);
+}
+.roleCol {
+  position: sticky;
+  top: calc(var(--menubar-h) + 40px);
+}
+
+/* ---------- Role card (deep green) ---------- */
+.role {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(24px, 3vw, 34px);
+  border-radius: var(--r-xl);
+  background: linear-gradient(155deg, #14532d 0%, #166534 45%, #047857 100%);
+  color: #ecfdf5;
+  box-shadow: 0 24px 60px rgba(20, 83, 45, 0.28);
+}
+/* Soft light blob that drifts in the corner. */
+.glow {
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  top: -90px;
+  right: -90px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(134, 239, 172, 0.45), transparent 65%);
+  animation: drift 9s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+@keyframes drift {
+  to {
+    transform: translate(-40px, 30px) scale(1.15);
+  }
+}
+.roleTop {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+}
+.logo {
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  background: #fff;
+  color: #166534;
+  font-weight: 800;
+  font-size: 1.15rem;
+  letter-spacing: -0.02em;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+}
+.live {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: var(--r-pill);
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  font-size: 0.76rem;
+  font-weight: 600;
+}
+.liveDot {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #86efac;
+}
+.liveDot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #86efac;
+  animation: ping 1.6s ease-out infinite;
+}
+@keyframes ping {
+  to {
+    transform: scale(2.8);
+    opacity: 0;
+  }
+}
+.roleTitle {
+  position: relative;
+  margin-top: var(--sp-5);
+  font-size: clamp(1.35rem, 2.2vw, 1.7rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: #fff;
+}
+.company {
+  position: relative;
+  margin-top: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #bbf7d0;
+}
+.meta {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2) var(--sp-4);
+  margin-top: var(--sp-3);
+  font-size: 0.84rem;
+  color: rgba(236, 253, 245, 0.8);
+}
+.meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.stats {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-3);
+  margin-top: var(--sp-5);
+}
+.stats div {
+  display: flex;
+  flex-direction: column;
+  padding: 14px 16px;
+  border-radius: var(--r-md);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+.stats strong {
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.05;
+  color: #fff;
+}
+.stats div > span {
+  font-size: 0.76rem;
+  color: rgba(236, 253, 245, 0.75);
+}
+.stack {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: var(--sp-5);
+  padding-top: var(--sp-4);
+  border-top: 1px dashed rgba(255, 255, 255, 0.22);
+}
+.stack span {
+  padding: 5px 12px;
+  border-radius: var(--r-pill);
+  background: rgba(255, 255, 255, 0.12);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #f0fdf4;
+  transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+.stack span:hover {
+  background: #fff;
+  color: #166534;
+}
+
+/* ---------- Impact bento ---------- */
+.bento {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-4);
+}
+.tile {
+  position: relative;
+  overflow: hidden;
+  padding: 22px 22px 20px;
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  box-shadow: var(--shadow-1);
+  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease),
+    border-color var(--dur) var(--ease);
+}
+/* Green line drawn along the top on hover. */
+.tile::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s var(--ease);
+}
+.tile:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-2);
+  border-color: var(--accent-soft);
+}
+.tile:hover::before {
+  transform: scaleX(1);
+}
+/* Featured first tile spans both columns, icon beside text. */
+.tileWide {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 18px;
+  background:
+    radial-gradient(90% 120% at 100% 0%, var(--accent-soft), transparent 60%),
+    var(--surface);
+}
+.tileWide .tileIc {
+  grid-row: span 2;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 0;
+}
+.tileWide h4 {
+  margin-top: 0;
+  font-size: 1.15rem;
+}
+.tileNum {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-faint);
+  opacity: 0.7;
+}
+.tileIc {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 14px;
+  border-radius: 14px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease),
+    transform var(--dur) var(--ease);
+}
+.tile:hover .tileIc {
+  background: var(--accent);
+  color: #fff;
+  transform: rotate(-6deg);
+}
+.tile h4 {
+  font-size: 1.02rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  padding-right: 28px;
+}
+.tile p {
+  margin-top: 6px;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text-dim);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 600px) {
+  .bento {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 900px) {
+  .split {
+    grid-template-columns: 1fr;
+  }
+  .roleCol {
+    position: static;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .glow,
+  .liveDot::after {
+    animation: none;
+  }
+}

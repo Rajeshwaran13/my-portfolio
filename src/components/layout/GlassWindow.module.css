@@ -1,0 +1,25 @@
+.window {
+  overflow: hidden;
+}
+.titlebar {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: 13px 16px;
+  border-bottom: 1px solid var(--glass-border);
+  background: var(--glass-hi);
+}
+.title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-dim);
+}
+.subtitle {
+  font-size: 0.78rem;
+  color: var(--text-faint);
+  margin-left: auto;
+  font-family: var(--font-mono);
+}
+.body {
+  padding: clamp(18px, 3vw, 28px);
+}

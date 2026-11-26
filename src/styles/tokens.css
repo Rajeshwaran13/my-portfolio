@@ -1,0 +1,110 @@
+/*
+ * Design tokens — green & white theme.
+ * Single responsibility: theme variables (color, glass, spacing, motion).
+ * Light (default, white + green) and dark are both defined here via [data-theme].
+ */
+
+:root {
+  /* Radii */
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 24px;
+  --r-xl: 32px;
+  --r-2xl: 32px;
+  --r-pill: 999px;
+
+  /* Spacing scale */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+  --sp-7: 48px;
+  --sp-8: 72px;
+  --sp-9: 96px;
+  --sp-10: 128px;
+  --sp-11: 160px;
+
+  /* Typography */
+  --font-ui: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'SF Mono', 'JetBrains Mono', 'Fira Code', ui-monospace, 'Cascadia Code', monospace;
+
+  --fs-hero: clamp(3rem, 9vw, 6.5rem);
+  --fs-display: clamp(2.2rem, 5vw, 3.5rem);
+  --fs-h1: clamp(1.8rem, 4vw, 2.75rem);
+  --fs-h2: clamp(1.4rem, 3vw, 2rem);
+  --fs-body-lg: clamp(1.05rem, 1.5vw, 1.25rem);
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+
+  /* Layout */
+  --maxw: min(90vw, 1520px);
+  --menubar-h: 44px;
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur: 0.45s;
+  --dur-fast: 0.22s;
+}
+
+/* ---------- LIGHT (default) — white + green ---------- */
+:root,
+html[data-theme='light'] {
+  --accent: #16a34a;
+  --accent-2: #059669;
+  --accent-soft: rgba(22, 163, 74, 0.16);
+
+  --bg: #f4faf6;
+  --bg-2: #e9f5ee;
+  --text: #11231a;
+  --text-dim: #3f5a4c;
+  --text-faint: #7f9488;
+
+  --glass-bg: rgba(255, 255, 255, 0.6);
+  --glass-bg-strong: rgba(255, 255, 255, 0.84);
+  --glass-border: rgba(16, 60, 36, 0.14);
+  --glass-hi: rgba(255, 255, 255, 0.55);
+  --glass-blur: 20px;
+
+  --chip-bg: rgba(255, 255, 255, 0.7);
+  --chip-border: rgba(16, 60, 36, 0.1);
+
+  --surface: rgba(255, 255, 255, 0.9);
+  --surface-border: rgba(16, 60, 36, 0.09);
+
+  --shadow-1: 0 4px 18px rgba(20, 83, 45, 0.08);
+  --shadow-2: 0 18px 50px rgba(20, 83, 45, 0.14);
+
+  color-scheme: light;
+}
+
+/* ---------- DARK ---------- */
+html[data-theme='dark'] {
+  --accent: #22c55e;
+  --accent-2: #34d399;
+  --accent-soft: rgba(34, 197, 94, 0.18);
+
+  --bg: #08110c;
+  --bg-2: #0e1b14;
+  --text: #ecf7f0;
+  --text-dim: #b2c7ba;
+  --text-faint: #7d9486;
+
+  --glass-bg: rgba(16, 31, 23, 0.62);
+  --glass-bg-strong: rgba(19, 36, 27, 0.86);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-hi: rgba(255, 255, 255, 0.05);
+  --glass-blur: 24px;
+
+  --chip-bg: rgba(255, 255, 255, 0.055);
+  --chip-border: rgba(255, 255, 255, 0.09);
+
+  --surface: rgba(10, 21, 15, 0.86);
+  --surface-border: rgba(255, 255, 255, 0.08);
+
+  --shadow-1: 0 4px 18px rgba(0, 0, 0, 0.18);
+  --shadow-2: 0 18px 50px rgba(0, 0, 0, 0.3);
+
+  color-scheme: dark;
+}

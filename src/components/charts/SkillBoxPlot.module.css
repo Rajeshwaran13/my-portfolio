@@ -1,0 +1,73 @@
+.boxplot {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+}
+.boxRow {
+  display: grid;
+  grid-template-columns: 200px 1fr 64px;
+  align-items: center;
+  gap: var(--sp-3);
+}
+.boxLabel {
+  font-size: 0.86rem;
+  font-weight: 500;
+  color: var(--text-dim);
+}
+.boxAxis {
+  position: relative;
+  height: 20px;
+}
+.whisker {
+  position: absolute;
+  top: 50%;
+  height: 1px;
+  background: var(--text-faint);
+  transform: translateY(-50%);
+}
+.whisker::before,
+.whisker::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  bottom: -4px;
+  width: 1px;
+  background: var(--text-faint);
+}
+.whisker::before {
+  left: 0;
+}
+.whisker::after {
+  right: 0;
+}
+.box {
+  position: absolute;
+  top: 1px;
+  bottom: 1px;
+  background: var(--accent);
+  opacity: 0.28;
+  border: 1px solid var(--accent);
+  border-radius: 3px;
+}
+.median {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--accent);
+}
+.boxRange {
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  color: var(--text-faint);
+  text-align: right;
+}
+@media (max-width: 640px) {
+  .boxRow {
+    grid-template-columns: 110px 1fr 52px;
+    gap: var(--sp-2);
+  }
+  .boxLabel {
+    font-size: 0.76rem;
+  }
+}

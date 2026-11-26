@@ -1,0 +1,108 @@
+.menubar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding-block: 12px 10px;
+  pointer-events: none;
+  border-bottom: 1px solid transparent;
+  transition: background var(--dur) var(--ease), border-color var(--dur) var(--ease),
+    padding var(--dur) var(--ease);
+}
+/* After scrolling: full-width frosted strip with a hairline — not a box. */
+.menubar.scrolled {
+  padding-block: 8px 6px;
+  background: var(--surface);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+  backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+  border-bottom-color: var(--surface-border);
+  pointer-events: auto;
+}
+/* Three floating pieces; the bar itself stays transparent. */
+.bar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: var(--sp-4);
+  min-height: var(--menubar-h);
+}
+.bar > * {
+  pointer-events: auto;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  justify-self: start;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+.nav {
+  justify-self: center;
+}
+.actions {
+  justify-self: end;
+}
+/* Action cluster — one slim pill: [search] [theme] | [Resume]. */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  border-radius: var(--r-pill);
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  box-shadow: var(--shadow-1);
+}
+.iconBtn {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  color: var(--text-dim);
+  transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+.iconBtn:hover {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+.divider {
+  width: 1px;
+  height: 20px;
+  margin-inline: 4px;
+  background: var(--surface-border);
+}
+.resumeBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 34px;
+  padding: 0 16px 0 13px;
+  border-radius: var(--r-pill);
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: transform var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+}
+.resumeBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px var(--accent-soft);
+}
+
+@media (max-width: 900px) {
+  .nav {
+    display: none;
+  }
+  .bar {
+    grid-template-columns: 1fr auto;
+  }
+}
+@media (max-width: 480px) {
+  .resumeBtn span {
+    display: none;
+  }
+}

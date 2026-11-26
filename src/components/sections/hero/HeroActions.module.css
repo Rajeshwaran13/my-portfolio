@@ -1,0 +1,126 @@
+.actions {
+  margin-top: var(--sp-6);
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-4) var(--sp-6);
+}
+
+/* Primary pill — arrow sits in a white circle and slides on hover. */
+.talk {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 7px 7px 7px 26px;
+  border-radius: var(--r-pill);
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  box-shadow: 0 12px 30px var(--accent-soft);
+  transition: transform var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+}
+.talkIc {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--accent);
+  transition: transform var(--dur-fast) var(--ease);
+}
+.talk:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px var(--accent-soft);
+}
+.talk:hover .talkIc {
+  transform: translateX(4px) rotate(-45deg);
+}
+
+/* Two-line icon links. */
+.quick {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text);
+}
+.quickIc {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px dashed var(--accent);
+  color: var(--accent);
+  transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease),
+    border-style var(--dur-fast) var(--ease);
+}
+.quickText {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+.quickText strong {
+  font-size: 0.98rem;
+  font-weight: 700;
+}
+.quickText small {
+  font-size: 0.78rem;
+  color: var(--text-faint);
+}
+.quick:hover .quickIc {
+  background: var(--accent);
+  border-style: solid;
+  color: #fff;
+}
+
+/* Inline social text links with animated underline. */
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2) var(--sp-5);
+  margin-top: var(--sp-6);
+}
+.link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-dim);
+  line-height: 1;
+  padding-bottom: 6px;
+  transition: color var(--dur-fast) var(--ease);
+}
+.link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-fast) var(--ease);
+}
+.link:hover {
+  color: var(--accent);
+}
+.link:hover::after {
+  transform: scaleX(1);
+}
+
+@media (max-height: 780px) {
+  .actions {
+    margin-top: var(--sp-4);
+  }
+  .links {
+    margin-top: var(--sp-4);
+  }
+}

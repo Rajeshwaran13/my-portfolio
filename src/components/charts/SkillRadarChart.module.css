@@ -1,0 +1,67 @@
+.radarWrap {
+  position: relative;
+  width: 100%;
+  margin-inline: auto;
+}
+.radarSvg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+.radarGrid {
+  fill: none;
+  stroke: var(--surface-border);
+  stroke-width: 1;
+}
+.radarSpoke {
+  stroke: var(--surface-border);
+  stroke-width: 1;
+}
+.radarFill {
+  fill: var(--accent);
+  fill-opacity: 0.12;
+  stroke: none;
+}
+.radarStroke {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+.radarDot {
+  fill: var(--accent);
+  stroke: var(--surface);
+  stroke-width: 2;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform var(--dur-fast) var(--ease);
+}
+.radarDot:hover {
+  transform: scale(1.4);
+}
+.radarLabel {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--text-dim);
+  text-align: center;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.radarLabel b {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--accent);
+  font-weight: 700;
+}
+@media (max-width: 640px) {
+  .radarLabel {
+    font-size: 0.66rem;
+  }
+}

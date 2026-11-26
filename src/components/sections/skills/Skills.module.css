@@ -1,0 +1,349 @@
+/* ================= Pipeline explorer layout ================= */
+.explorer {
+  display: grid;
+  grid-template-columns: minmax(240px, 300px) 1fr;
+  gap: clamp(24px, 4vw, 56px);
+  margin-top: var(--sp-7);
+  align-items: start;
+}
+
+/* ---------- Left: stages on a flowing pipe ---------- */
+.stages {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.pipe {
+  position: absolute;
+  left: 23px;
+  top: 24px;
+  bottom: 24px;
+  width: 2px;
+  background: var(--accent-soft);
+  border-radius: 2px;
+  overflow: hidden;
+}
+/* Data "packet" flowing down the pipe. */
+.flow {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: linear-gradient(180deg, transparent, var(--accent), transparent);
+  animation: flow 2.6s linear infinite;
+}
+@keyframes flow {
+  from { top: -60px; }
+  to { top: 100%; }
+}
+.stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 12px 8px 0;
+  text-align: left;
+  border-radius: var(--r-md);
+  color: var(--text-dim);
+  transition: color var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+}
+.stage:hover {
+  color: var(--text);
+  transform: translateX(4px);
+}
+.stage:focus {
+  outline: none;
+}
+.stage:focus-visible .node {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+.node {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--accent-soft);
+  color: var(--accent);
+  transition: all var(--dur) var(--ease);
+}
+.stageText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+.stageText strong {
+  font-size: 0.98rem;
+  font-weight: 600;
+}
+.stageText small {
+  font-size: 0.76rem;
+  color: var(--text-faint);
+}
+.stageOn {
+  color: var(--text);
+}
+.stageOn .node {
+  background: linear-gradient(140deg, var(--accent), var(--accent-2));
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 0 0 6px var(--accent-soft), 0 10px 24px var(--accent-soft);
+  transform: scale(1.06);
+}
+.stageOn .stageText strong {
+  font-weight: 700;
+}
+/* Auto-advance countdown. */
+.timer {
+  display: block;
+  height: 2px;
+  margin-top: 6px;
+  background: var(--accent-soft);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.timer span {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  transform-origin: left;
+  animation: countdown linear forwards;
+}
+@keyframes countdown {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+/* ---------- Right: detail panel ---------- */
+.panel {
+  position: relative;
+  padding: clamp(22px, 3vw, 36px);
+  border-radius: var(--r-xl);
+  background:
+    radial-gradient(120% 80% at 100% 0%, var(--accent-soft), transparent 55%),
+    var(--surface);
+  border: 1px solid var(--surface-border);
+  box-shadow: var(--shadow-2);
+  overflow: hidden;
+  animation: panelIn 0.5s var(--ease) both;
+}
+@keyframes panelIn {
+  from { opacity: 0; transform: translateY(12px) scale(0.99); }
+  to { opacity: 1; transform: none; }
+}
+.panelHead {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: clamp(16px, 2.5vw, 28px);
+  padding-bottom: var(--sp-5);
+  border-bottom: 1px dashed var(--glass-border);
+}
+.bigIndex {
+  font-family: var(--font-mono);
+  font-size: clamp(2.6rem, 5vw, 3.8rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  background: linear-gradient(160deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.bigIndex small {
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  margin-left: 4px;
+  -webkit-text-fill-color: var(--text-faint);
+}
+.headText h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.headIc {
+  display: inline-flex;
+  color: var(--accent);
+}
+.headText p {
+  margin-top: 4px;
+  color: var(--text-dim);
+  font-size: 0.95rem;
+}
+.kpis {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: right;
+  font-size: 0.8rem;
+  color: var(--text-faint);
+  white-space: nowrap;
+}
+.kpis strong {
+  font-size: 1.15rem;
+  color: var(--text);
+  margin-right: 3px;
+}
+
+/* Skill rows — two columns. */
+.skillList {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-4) var(--sp-6);
+  margin-top: var(--sp-5);
+}
+.skill {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    'top top'
+    'track pct';
+  align-items: center;
+  column-gap: 10px;
+  row-gap: 8px;
+  animation: rowIn 0.45s var(--ease) both;
+}
+@keyframes rowIn {
+  from { opacity: 0; transform: translateX(-10px); }
+  to { opacity: 1; transform: none; }
+}
+.skillTop {
+  grid-area: top;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.skillName {
+  font-weight: 600;
+  font-size: 0.98rem;
+}
+.tier {
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: var(--r-pill);
+}
+.tierExpert {
+  background: var(--accent);
+  color: #fff;
+}
+.tierAdvanced {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+.tierProficient {
+  border: 1px solid var(--glass-border);
+  color: var(--text-dim);
+}
+.track {
+  grid-area: track;
+  position: relative;
+  height: 8px;
+  border-radius: var(--r-pill);
+  background: var(--bg-2);
+  overflow: hidden;
+}
+.fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--lvl);
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--accent-2), var(--accent));
+  transform-origin: left;
+  animation: grow 0.9s var(--ease) both;
+}
+/* Shine sweeping across each bar. */
+.fill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+  transform: translateX(-100%);
+  animation: shine 2.8s ease-in-out 1s infinite;
+}
+@keyframes grow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@keyframes shine {
+  60%, 100% { transform: translateX(100%); }
+}
+.pct {
+  grid-area: pct;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-faint);
+  min-width: 34px;
+  text-align: right;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .explorer {
+    grid-template-columns: 1fr;
+  }
+  .stages {
+    flex-direction: row;
+    overflow-x: auto;
+    gap: var(--sp-2);
+    padding-bottom: 6px;
+    scrollbar-width: none;
+  }
+  .pipe,
+  .timer {
+    display: none;
+  }
+  .stage {
+    flex-shrink: 0;
+    padding: 6px 14px 6px 6px;
+    border-radius: var(--r-pill);
+    border: 1px solid var(--surface-border);
+    background: var(--surface);
+  }
+  .stage:hover {
+    transform: none;
+  }
+  .node {
+    width: 36px;
+    height: 36px;
+  }
+  .stageText small {
+    display: none;
+  }
+}
+@media (max-width: 640px) {
+  .panelHead {
+    grid-template-columns: auto 1fr;
+  }
+  .kpis {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    gap: var(--sp-4);
+    text-align: left;
+  }
+  .skillList {
+    grid-template-columns: 1fr;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .flow,
+  .fill::after {
+    animation: none;
+  }
+}

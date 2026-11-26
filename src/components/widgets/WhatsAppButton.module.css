@@ -1,0 +1,58 @@
+.waFab {
+  position: fixed;
+  right: 20px;
+  bottom: 84px;
+  z-index: 95;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  color: #fff;
+  background: #25d366;
+  box-shadow: 0 10px 28px rgba(18, 140, 126, 0.45);
+  transition: transform var(--dur-fast) var(--ease);
+}
+.waFab:hover {
+  transform: scale(1.08);
+}
+.ping {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid #25d366;
+  animation: ping 2.2s var(--ease) infinite;
+}
+@keyframes ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+@media (max-width: 680px) {
+  /* Stacked above the chat launcher, which itself clears the dock. */
+  .waFab {
+    bottom: 142px;
+    right: 14px;
+    width: 50px;
+    height: 50px;
+    transition: transform var(--dur-fast) var(--ease), opacity var(--dur-fast) var(--ease);
+  }
+  /* Tucks out of the way while actively scrolling, so it doesn't sit on top
+     of whatever section happens to pass underneath on a short screen. */
+  .waFab.scrollHidden {
+    opacity: 0;
+    transform: translateX(16px) scale(0.85);
+    pointer-events: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ping {
+    animation: none;
+    display: none;
+  }
+}

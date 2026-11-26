@@ -1,0 +1,49 @@
+.treemap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+.tile {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 8px 10px;
+  box-sizing: border-box;
+  border: 2px solid var(--surface);
+  background: var(--accent);
+  color: #fff;
+  overflow: hidden;
+}
+.tileName {
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.2;
+  overflow-wrap: break-word;
+}
+.tileCount {
+  font-size: 0.68rem;
+  font-family: var(--font-mono);
+  opacity: 0.85;
+}
+.treemapLegend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  list-style: none;
+  margin-top: var(--sp-3);
+  font-size: 0.76rem;
+  color: var(--text-faint);
+}
+.treemapLegend b {
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-weight: 600;
+}
+@media (max-width: 640px) {
+  .tileName {
+    font-size: 0.68rem;
+  }
+}
